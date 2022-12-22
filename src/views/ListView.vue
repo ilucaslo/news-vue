@@ -25,20 +25,32 @@
         md="3"
         lg="3"
       >
-        <new-item />
+        <news-item />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import NewItem from '../components/NewItem.vue';
+import NewsItem from '../components/NewsItem.vue';
 
 export default {
   name: 'ListView',
 
   components: {
-    NewItem,
+    NewsItem,
+  },
+
+  data() {
+    return {
+      articles: [],
+    };
+  },
+
+  created() {
+    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=099148be22804e849a0c6fe022b7cf5e')
+      .then((response) => response.json())
+      .then((data) => { this.articles = data.articles; });
   },
 };
 </script>
