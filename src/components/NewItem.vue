@@ -19,8 +19,8 @@
                 Share
             </v-btn>
 
-            <v-btn color="orange" text>
-                Explore
+            <v-btn color="orange" text @click="navigateToDetail">
+                Details
             </v-btn>
         </v-card-actions>
     </v-card>
@@ -34,5 +34,11 @@ export default {
   data: () => ({
     //
   }),
+
+  methods: {
+    navigateToDetail() {
+      this.$router.push({ name: 'detail' });
+    },
+  },
 };
 </script>
