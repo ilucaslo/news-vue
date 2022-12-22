@@ -1,5 +1,6 @@
 <template>
-    <v-card class="mx-auto" max-width="400">
+  <v-hover v-slot="{ hover }">
+    <v-card class="mx-auto" max-width="400" :class="{ 'on-hover': hover }">
         <v-img class="white--text align-end" height="200px"
           :src="imgUrl || require('@/assets/card-default.svg')">
             <v-card-title>{{ title }}</v-card-title>
@@ -13,6 +14,7 @@
             <div>{{ description }}</div>
         </v-card-text>
     </v-card>
+  </v-hover>
 </template>
 
 <script>
@@ -40,3 +42,12 @@ export default {
   }),
 };
 </script>
+
+<style lang="scss" scoped>
+.v-card.on-hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.4);
+  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+</style>
