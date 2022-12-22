@@ -1,28 +1,17 @@
 <template>
     <v-card class="mx-auto" max-width="400">
-        <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
-            <v-card-title>Top 10 Australian beaches</v-card-title>
+        <v-img class="white--text align-end" height="200px"
+          :src="imgUrl || require('@/assets/card-default.svg')">
+            <v-card-title>{{ title }}</v-card-title>
         </v-img>
 
         <v-card-subtitle class="pb-0">
-            Number 10
+            {{ date }}
         </v-card-subtitle>
 
         <v-card-text class="text--primary">
-            <div>Whitehaven Beach</div>
-
-            <div>Whitsunday Island, Whitsunday Islands</div>
+            <div>{{ description }}</div>
         </v-card-text>
-
-        <v-card-actions>
-            <v-btn color="orange" text>
-                Share
-            </v-btn>
-
-            <v-btn color="orange" text @click="navigateToDetail">
-                Details
-            </v-btn>
-        </v-card-actions>
     </v-card>
 </template>
 
@@ -31,14 +20,23 @@
 export default {
   name: 'NewsItem',
 
+  props: {
+    title: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    date: {
+      type: String,
+    },
+    imgUrl: {
+      type: String,
+    },
+  },
+
   data: () => ({
     //
   }),
-
-  methods: {
-    navigateToDetail() {
-      this.$router.push({ name: 'detail' });
-    },
-  },
 };
 </script>

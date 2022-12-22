@@ -17,15 +17,19 @@
     </v-row>
     <v-row>
       <v-col
-        v-for="n in 12"
-        :key="n"
+        v-for="article in articles"
+        :key="article.url"
         cols="auto"
         xs="1"
         sm="4"
         md="3"
         lg="3"
       >
-        <news-item />
+        <news-item
+        :title="article.title"
+        :description="article.description"
+        :date="article.publishedAt"
+        :imgUrl="article.urlToImage" />
       </v-col>
     </v-row>
   </v-container>
