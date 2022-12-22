@@ -16,7 +16,11 @@
       </v-col>
     </v-row>
     <v-row>
+      <v-col v-if="isLoading">
+        <spinner text="Loading headlines..." />
+      </v-col>
       <v-col
+        v-else
         v-for="article in articles"
         :key="article.url"
         cols="auto"
@@ -26,35 +30,50 @@
         lg="3"
       >
         <news-item
-        :title="article.title"
-        :description="article.description"
-        :date="article.publishedAt"
-        :imgUrl="article.urlToImage" />
+          :title="article.title"
+          :description="article.description"
+          :date="article.publishedAt"
+          :imgUrl="article.urlToImage" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import NewsItem from '../components/NewsItem.vue';
+import Spinner from '../components/Spinner.vue';
 
 export default {
   name: 'ListView',
 
   components: {
     NewsItem,
+    Spinner,
   },
 
   data() {
     return {
-      articles: [],
+      isLoading: false,
     };
   },
 
-  created() {
-    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=099148be22804e849a0c6fe022b7cf5e')
-      .then((response) => response.json())
-      .then((data) => { this.articles = data.articles; });
+  computed: {
+    ...mapState(['articles']),
+  },
+
+  methods: {
+    ...mapActions(['fetchArticles']),
+
+    async onMount() {
+      await this.fetchArticles();
+    },
+  },
+
+  async mounted() {
+    this.isLoading = true;
+    await this.onMount();
+    this.isLoading = false;
   },
 };
 </script>
