@@ -35,7 +35,7 @@
 import NewItem from '../components/NewItem.vue';
 
 export default {
-  name: 'HomeView',
+  name: 'ListView',
 
   components: {
     NewItem,
