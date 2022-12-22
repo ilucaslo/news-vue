@@ -29,7 +29,7 @@
 <script>
 
 export default {
-  name: 'NewItem',
+  name: 'NewsItem',
 
   data: () => ({
     //
