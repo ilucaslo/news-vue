@@ -76,9 +76,12 @@ export default {
   },
 
   async created() {
-    this.isLoading = true;
-    await this.onCreate();
-    this.isLoading = false;
+    // Don't fetch new data if we already made an API call
+    if (this.articles.length === 0) {
+      this.isLoading = true;
+      await this.onCreate();
+      this.isLoading = false;
+    }
     // console.log('sources', this.sources);
   },
 };
