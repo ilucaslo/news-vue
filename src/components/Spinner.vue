@@ -21,7 +21,7 @@ export default {
 
 <style lang="scss" scoped>
     p {
-        font-size: 0.8em;
+        font-size: 1em;
         font-weight: 300;
         margin-top: 5px;
         letter-spacing: 1px;
@@ -45,10 +45,10 @@ export default {
         width: 64px;
         height: 64px;
         margin: 8px;
-        border: 8px solid #6916a0;
+        border: 8px solid #1976d2;
         border-radius: 50%;
         animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: #6916a0 transparent transparent transparent;
+        border-color: #1976d2 transparent transparent transparent;
     }
     .loader div:nth-child(1) {
         animation-delay: -0.45s;
