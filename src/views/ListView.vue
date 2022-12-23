@@ -1,10 +1,13 @@
 <template>
   <v-container
-    class="grey lighten-5"
+    class="grey lighten-5 px-15 py-4"
     fluid>
     <v-row>
       <v-col>
-        <h2>Headlines</h2>
+        <h2>Top Headlines</h2>
+      </v-col>
+      <v-col cols="auto" class="ma-auto">
+        <history-headlines />
       </v-col>
       <v-col cols="auto">
         <v-btn
@@ -15,7 +18,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="py-4">
       <v-col v-if="isLoading">
         <spinner text="Loading headlines..." />
       </v-col>
@@ -44,6 +47,7 @@
 import { mapState, mapActions } from 'vuex';
 import NewsItem from '../components/NewsItem.vue';
 import Spinner from '../components/Spinner.vue';
+import HistoryHeadlines from '../components/HistoryHeadlines.vue';
 
 export default {
   name: 'ListView',
@@ -51,6 +55,7 @@ export default {
   components: {
     NewsItem,
     Spinner,
+    HistoryHeadlines,
   },
 
   data() {

@@ -5,7 +5,7 @@
       color="primary"
       dark
     >
-      <v-toolbar-title class="title" @click="NavigateToHome">News</v-toolbar-title>
+      <v-toolbar-title class="title ps-11" @click="NavigateToHome">News App</v-toolbar-title>
     </v-app-bar>
 
     <!-- Sizes your content based upon application components -->
@@ -37,8 +37,8 @@ export default {
 
 <style lang="scss" scoped>
 .title:hover {
-  transform: scale(1.2);
+  opacity: .8;
   cursor: pointer;
-  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+  transition: .3s;
 }
 </style>

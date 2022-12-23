@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     articles: [],
     sources: [],
+    headlinesHistory: [],
   },
   getters: {
     articleByIndex: (state) => (index) => state.articles[index],
@@ -17,6 +18,12 @@ export default new Vuex.Store({
     },
     setSources(state, sources) {
       state.sources = sources;
+    },
+    addHeadlineToHistory(state, headline) {
+      state.headlinesHistory.unshift(headline);
+    },
+    clearHeadlinesHistory(state) {
+      state.headlinesHistory = [];
     },
   },
   actions: {
