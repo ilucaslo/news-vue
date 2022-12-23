@@ -1,6 +1,7 @@
 <template>
   <v-hover v-slot="{ hover }">
-    <v-card class="mx-auto" max-width="400" :class="{ 'on-hover': hover }">
+    <v-card class="mx-auto" max-width="400" :class="{ 'on-hover': hover }"
+      @click="cardClicked">
         <v-img class="white--text align-end" height="200px"
           :src="imgUrl || require('@/assets/card-default.svg')">
             <v-card-title>{{ title }}</v-card-title>
@@ -40,6 +41,12 @@ export default {
   data: () => ({
     //
   }),
+
+  methods: {
+    cardClicked() {
+      this.$emit('onCardClicked');
+    },
+  },
 };
 </script>
 

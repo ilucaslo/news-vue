@@ -11,7 +11,7 @@ const routes = [
     component: ListView,
   },
   {
-    path: '/detail',
+    path: '/:articleIndex',
     name: 'detail',
     // route level code-splitting
     // this generates a separate chunk (detail.[hash].js) for this route

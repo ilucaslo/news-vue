@@ -21,7 +21,7 @@
       </v-col>
       <v-col
         v-else
-        v-for="article in articles"
+        v-for="article, index in articles"
         :key="article.url"
         cols="auto"
         xs="1"
@@ -33,7 +33,8 @@
           :title="article.title"
           :description="article.description"
           :date="article.publishedAt"
-          :imgUrl="article.urlToImage" />
+          :imgUrl="article.urlToImage"
+          @onCardClicked="navigateToDetail(index)" />
       </v-col>
     </v-row>
   </v-container>
@@ -59,21 +60,26 @@ export default {
   },
 
   computed: {
-    ...mapState(['articles']),
+    ...mapState(['articles', 'sources']),
   },
 
   methods: {
-    ...mapActions(['fetchArticles']),
+    ...mapActions(['fetchArticles', 'fetchSources']),
 
-    async onMount() {
+    async onCreate() {
       await this.fetchArticles();
+      // await this.fetchSources();
+    },
+    navigateToDetail(articleIndex) {
+      this.$router.push({ name: 'detail', params: { articleIndex } });
     },
   },
 
-  async mounted() {
+  async created() {
     this.isLoading = true;
-    await this.onMount();
+    await this.onCreate();
     this.isLoading = false;
+    // console.log('sources', this.sources);
   },
 };
 </script>
