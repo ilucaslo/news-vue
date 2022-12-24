@@ -27,15 +27,20 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async fetchArticles() {
+    async fetchTopArticles({ commit }) {
       const res = await fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=099148be22804e849a0c6fe022b7cf5e');
       const data = await res.json();
-      this.commit('setArticles', data.articles);
+      commit('setArticles', data.articles);
     },
-    async fetchSources() {
+    async fetchSources({ commit }) {
       const res = await fetch('https://newsapi.org/v2/sources?apiKey=099148be22804e849a0c6fe022b7cf5e');
       const data = await res.json();
-      this.commit('setSources', data.sources);
+      commit('setSources', data.sources);
+    },
+    async searchArticles({ commit }, searchText) {
+      const res = await fetch(`https://newsapi.org/v2/top-headlines?q=${searchText}&apiKey=099148be22804e849a0c6fe022b7cf5e`);
+      const data = await res.json();
+      commit('setArticles', data.articles);
     },
   },
   modules: {

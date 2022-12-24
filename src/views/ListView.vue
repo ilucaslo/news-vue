@@ -1,12 +1,24 @@
 <template>
   <v-container
-    class="grey lighten-5 px-15 py-4"
+    class="grey lighten-5 px-16 py-8"
     fluid>
     <v-row>
-      <v-col>
+      <v-col cols="auto" class="mr-6">
         <h2>Top Headlines</h2>
       </v-col>
-      <v-col cols="auto" class="ma-auto">
+      <v-col cols="auto">
+        <v-text-field
+          v-model="searchValue"
+          class="ma-0 pa-0"
+          hide-details
+          prepend-icon="mdi-magnify"
+          single-line
+          @keydown="onSearchType"
+        ></v-text-field>
+      </v-col>
+      <v-spacer></v-spacer>
+      <v-row class="align-center justify-end">
+      <v-col cols="auto">
         <history-headlines />
       </v-col>
       <v-col cols="auto">
@@ -18,7 +30,11 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row class="py-4">
+    </v-row>
+    <v-row v-if="!isLoading && noArticles">
+      <h1> No results for: {{ searchValue }}</h1>
+    </v-row>
+    <v-row v-else class="py-7">
       <v-col v-if="isLoading">
         <spinner text="Loading headlines..." />
       </v-col>
@@ -61,33 +77,46 @@ export default {
   data() {
     return {
       isLoading: false,
+      searchValue: '',
     };
   },
 
   computed: {
     ...mapState(['articles', 'sources']),
+
+    noArticles() {
+      return this.articles && this.articles.length === 0;
+    },
   },
 
   methods: {
-    ...mapActions(['fetchArticles', 'fetchSources']),
+    ...mapActions(['fetchTopArticles', 'fetchSources', 'searchArticles']),
 
     async onCreate() {
-      await this.fetchArticles();
+      await this.fetchTopArticles();
       // await this.fetchSources();
     },
     navigateToDetail(articleIndex) {
       this.$router.push({ name: 'detail', params: { articleIndex } });
     },
+    async onSearchType() {
+      this.isLoading = true;
+      if (this.searchValue !== '') {
+        await this.searchArticles(this.searchValue);
+      } else {
+        this.onCreate();
+      }
+      this.isLoading = false;
+    },
   },
 
   async created() {
     // Don't fetch new data if we already made an API call
-    if (this.articles.length === 0) {
+    if (this.noArticles) {
       this.isLoading = true;
       await this.onCreate();
       this.isLoading = false;
     }
-    // console.log('sources', this.sources);
   },
 };
 </script>
