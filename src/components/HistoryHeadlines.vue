@@ -16,7 +16,7 @@
           </v-btn>
         </template>
         <v-card>
-          <v-card-title>Your headlines history</v-card-title>
+          <v-card-title class="justify-center">Your headlines history</v-card-title>
           <v-divider></v-divider>
           <v-card-text style="height:400px;">
             <ol class="pt-5">
