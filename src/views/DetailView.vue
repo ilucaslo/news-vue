@@ -1,15 +1,17 @@
 <template>
-  <v-layout row wrap align-center>
+  <v-layout row wrap align-center class="my-12">
       <v-flex xs8  offset-md2>
         <div class="article">
           <v-card class="my-3">
             <v-img :src="article.urlToImage"
             ></v-img>
-            <v-card-actions>
+            <v-card-actions class="my-3">
               <v-chip
+                v-if="article.author"
                 class="ma-2"
                 color="primary"
                 label
+                outlined
               >
                 <v-icon left>
                   mdi-account-circle-outline
@@ -20,13 +22,16 @@
                 class="ma-2"
                 color="primary"
                 label
+                outlined
               >
                 <v-icon left>
                   mdi-calendar-range
                 </v-icon>
-                {{ article.publishedAt }}
+                {{ article.publishedAt | formatDate }}
               </v-chip>
-              <v-chip small color="primary" class="white--text">
+              <v-chip small color="primary"
+                class="white--text"
+                outlined>
                 {{ article.source.name }}
               </v-chip>
               <v-spacer></v-spacer>

@@ -32,7 +32,7 @@
     </v-row>
     </v-row>
     <v-row v-if="!isLoading && noArticles">
-      <h1> No results for: {{ searchValue }}</h1>
+      <h3> No results for: {{ searchValue }}</h3>
     </v-row>
     <v-row v-else class="py-7">
       <v-col v-if="isLoading">

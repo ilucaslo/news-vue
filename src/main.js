@@ -6,6 +6,12 @@ import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false;
 
+Vue.filter('formatDate', (value) => {
+  if (!value) return '';
+  const valueString = value.toString();
+  return valueString.substring(0, 10);
+});
+
 new Vue({
   router,
   store,
