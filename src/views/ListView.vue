@@ -13,7 +13,7 @@
           hide-details
           prepend-icon="mdi-magnify"
           single-line
-          @keydown="onSearchType"
+          @input="onSearchType"
         ></v-text-field>
       </v-col>
       <v-spacer></v-spacer>
@@ -94,7 +94,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['articles', 'sources']),
+    ...mapState(['articles']),
 
     noArticles() {
       return this.articles && this.articles.length === 0;
