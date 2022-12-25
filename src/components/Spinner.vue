@@ -1,4 +1,4 @@
-<template>
+<template functional>
     <div class="loader-wrapper">
       <div class="loader">
         <div></div>
@@ -6,7 +6,7 @@
         <div></div>
         <div></div>
       </div>
-      <p>{{ text }}</p>
+      <p>{{ props.text }}</p>
     </div>
   </template>
 
