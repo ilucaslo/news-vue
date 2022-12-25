@@ -1,10 +1,9 @@
 <template>
-  <v-hover v-slot="{ hover }">
-    <v-card class="mx-auto" max-width="400" :class="{ 'on-hover': hover }"
-      @click="cardClicked">
+  <v-container>
+    <v-card class="mx-auto" max-width="400">
         <v-img class="white--text align-end" height="200px"
           :src="imgUrl || require('@/assets/card-default.svg')">
-            <v-card-title>{{ title }}</v-card-title>
+            <v-card-title class="title">{{ title }}</v-card-title>
         </v-img>
 
         <v-card-subtitle class="pb-0">
@@ -14,14 +13,28 @@
         <v-card-text class="text--primary">
             <div>{{ description }}</div>
         </v-card-text>
+        <headline-actions
+          @onMoreClicked="navigateToDetail"
+          @onEditTitleClicked="onEditTitleClicked"
+         />
     </v-card>
-  </v-hover>
+    <edit-headline-title
+      v-model="showEditTitleDialog"
+      :articleIndex="articleIndex" />
+  </v-container>
 </template>
 
 <script>
+import HeadlineActions from '@/components/HeadlineActions.vue';
+import EditHeadlineTitle from '@/components/EditHeadlineTitle.vue';
 
 export default {
   name: 'NewsItem',
+
+  components: {
+    HeadlineActions,
+    EditHeadlineTitle,
+  },
 
   props: {
     title: {
@@ -36,25 +49,28 @@ export default {
     imgUrl: {
       type: String,
     },
+    articleIndex: {
+      type: Number,
+    },
   },
 
   data: () => ({
-    //
+    showEditTitleDialog: false,
   }),
 
   methods: {
-    cardClicked() {
-      this.$emit('onCardClicked');
+    onEditTitleClicked() {
+      this.showEditTitleDialog = true;
+    },
+    navigateToDetail() {
+      this.$router.push({ name: 'detail', params: { articleIndex: this.articleIndex } });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.v-card.on-hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.4);
-  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+.title {
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 </style>
