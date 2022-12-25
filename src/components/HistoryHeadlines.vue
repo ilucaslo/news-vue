@@ -21,9 +21,7 @@
           <ol class="pt-5">
             <li v-for="headline, index in headlinesHistory"
               :key="index" class="pt-5">
-              <router-link :to="{name: 'detail', params: {articleIndex: headline.articleIndex}}">
-                {{ headline.title }}
-              </router-link>
+                <span>{{ headline.title }}</span>
             </li>
           </ol>
         </v-card-text>
@@ -54,8 +52,6 @@ import { mapState, mapMutations } from 'vuex';
 export default {
   name: 'HistoryHeadlines',
 
-  props: {},
-
   data: () => ({
     dialog: false,
   }),
@@ -69,6 +65,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
