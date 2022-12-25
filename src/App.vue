@@ -5,7 +5,14 @@
       color="primary"
       dark
     >
-      <v-toolbar-title class="title ps-11" @click="NavigateToHome">News App</v-toolbar-title>
+      <v-icon
+        large
+        color="white"
+        class="ps-11"
+      >
+        mdi-newspaper-variant
+      </v-icon>
+      <v-toolbar-title class="title ps-5" @click="NavigateToHome">News App</v-toolbar-title>
     </v-app-bar>
 
     <!-- Sizes your content based upon application components -->
