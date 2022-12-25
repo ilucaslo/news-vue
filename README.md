@@ -10,14 +10,13 @@ npm install
 npm run serve
 ```
 
+
+In case the News API key is not working, replace the value of VUE_APP_NEWS_API_KEY in .env file (root) with a working one
+
+
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
 ```
 
 ### Lints and fixes files
