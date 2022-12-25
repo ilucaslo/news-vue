@@ -1,39 +1,48 @@
 <template>
-  <v-layout row wrap align-center class="my-12">
-      <v-flex xs8  offset-md2>
-        <div class="article">
+  <v-container>
+    <v-row class="my-5">
+        <v-col cols="auto">
           <v-card class="my-3">
             <v-img :src="article.urlToImage"
             ></v-img>
             <v-card-actions class="my-3">
-              <v-chip
-                v-if="article.author"
-                class="ma-2"
-                color="primary"
-                label
-                outlined
-              >
-                <v-icon left>
-                  mdi-account-circle-outline
-                </v-icon>
-                {{ article.author }}
-              </v-chip>
-              <v-chip
-                class="ma-2"
-                color="primary"
-                label
-                outlined
-              >
-                <v-icon left>
-                  mdi-calendar-range
-                </v-icon>
-                {{ article.publishedAt | formatDate }}
-              </v-chip>
-              <v-chip small color="primary"
-                class="white--text"
-                outlined>
-                {{ article.source.name }}
-              </v-chip>
+              <v-row>
+                <v-col cols="auto">
+                  <v-chip
+                    v-if="article.author"
+                    class="ma-2"
+                    color="primary"
+                    label
+                    outlined
+                  >
+                    <v-icon left>
+                      mdi-account-circle-outline
+                    </v-icon>
+                    {{ article.author }}
+                  </v-chip>
+                </v-col>
+                <v-col cols="auto">
+                  <v-chip
+                    class="ma-2"
+                    color="primary"
+                    label
+                    outlined
+                  >
+                    <v-icon left>
+                      mdi-calendar-range
+                    </v-icon>
+                    {{ article.publishedAt | formatDate }}
+                  </v-chip>
+                </v-col>
+                <v-col cols="auto"
+                  style="align-self:center;">
+                  <v-chip small color="primary"
+                    class="white--text"
+                    outlined>
+                    {{ article.source.name }}
+                  </v-chip>
+              </v-col>
+          </v-row>
               <v-spacer></v-spacer>
               <v-btn small replace color="info"
                 :href="article.url" target="_blank" >Read More</v-btn>
@@ -50,9 +59,9 @@
               {{ article.description }}
             </v-card-text>
           </v-card>
-        </div>
-      </v-flex>
-    </v-layout>
+        </v-col>
+      </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -92,7 +101,7 @@ export default {
   },
 
   mounted() {
-    this.addHeadlineToHistory({ title: this.article.title, articleIndex: this.articleIndex });
+    this.addHeadlineToHistory({ title: this.article.title });
   },
 
   methods: {
